@@ -5,6 +5,7 @@ import TextArea from './TextArea'
 import { validateText, validateEmail, isNumeric } from '../utils/validation'
 import Questions from './Questions'
 import { questionsApi } from '../Api/apis'
+import Summary from './Summary'
 
 function Form() {
     const [topic, setTopic] = useState("")
@@ -19,6 +20,9 @@ function Form() {
     const [technologyQuestions, setTechnologyQuestions] = useState([]);
     const [healthQuestions, setHealthQuestions] = useState([]);
     const [educationQuestions, setEducationQuestions] = useState([]);
+
+    const [dataObj, setDataObj] = useState(null);
+    const [showSummary, setShowSummary] = useState(false);
 
     const nameRef = useRef()
     const mailRef = useRef()
@@ -158,7 +162,8 @@ function Form() {
             health: { exercise_frequency: exerciseFrequency, diet_preferance: dietPreferance, questions: healthQuestions },
             education: { qualification, fieldOfStudy, questions: educationQuestions }
         }
-        console.log(data)
+        setShowSummary(true);
+        setDataObj(data)
         clearState()
     }
 
@@ -182,6 +187,10 @@ function Form() {
             default:
                 break;
         }
+    }
+
+    if (dataObj && showSummary) {
+        return <Summary data={dataObj} />;
     }
 
 

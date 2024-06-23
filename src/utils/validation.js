@@ -1,6 +1,6 @@
 export function validateText(input) {
-    // Regular expression to match only alphabetic characters (uppercase and lowercase)
-    const regex = /^[a-zA-Z]+$/;
+    // Regular expression to match alphabetic characters and spaces
+    const regex = /^[a-zA-Z\s]*$/;
 
     // Test the input against the regular expression
     return regex.test(input);
